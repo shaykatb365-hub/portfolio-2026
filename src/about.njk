@@ -71,7 +71,7 @@ description: "About the designer and how to get in touch."
         {% for step in steps %}
         <li style="display: flex; align-items: center; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--rule);">
           <span class="section-label" style="min-width: 1.5rem; color: var(--accent); background: var(--ink); padding: 1px 5px; font-size: 0.6rem;">
-            {{ "%02d" | format(loop.index) }}
+            0{{ loop.index }}
           </span>
           <span>{{ step }}</span>
         </li>
