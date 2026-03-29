@@ -2,108 +2,97 @@
 layout: base.njk
 ---
 
-<!-- ── Project Hero ──────────────────────────────────────────────────────── -->
-<section style="border-bottom: 1px solid var(--rule);">
-  <div class="max-w-6xl mx-auto px-6 pt-16 pb-12">
+<!-- Hero -->
+<section style="border-bottom: 1px solid var(--border); background: var(--deep);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 5rem 2rem 4rem;">
 
     <!-- Breadcrumb -->
-    <div class="flex items-center gap-2 mb-10 section-label fade-up">
-      <a href="/work/" style="color: var(--mid);">Work</a>
-      <span style="color: var(--rule);">/</span>
-      <span>{{ title }}</span>
+    <div class="label fu" style="display: flex; gap: 0.75rem; margin-bottom: 3rem;">
+      <a href="/work/" style="color: var(--muted); transition: color 0.2s;" onmouseover="this.style.color='var(--bright)'" onmouseout="this.style.color='var(--muted)'">Work</a>
+      <span style="color: var(--border2);">/</span>
+      <span style="color: var(--sub);">{{ title }}</span>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end fade-up fade-up-1">
-      <!-- Meta column -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: end;">
       <div>
         {% if client %}
-        <div class="badge mb-4">{{ client }}</div>
+        <div class="badge fu" style="margin-bottom: 1.5rem;">{{ client }}</div>
         {% endif %}
-
-        <h1 class="display fade-up fade-up-2" style="font-size: clamp(2.8rem, 6vw, 5rem); margin-bottom: 1.5rem;">
+        <h1 class="display fu fu1" style="font-size: clamp(3rem, 6vw, 5.5rem); margin-bottom: 1.5rem;">
           {{ title }}
         </h1>
-
-        <p style="color: var(--mid); max-width: 38ch; line-height: 1.8;" class="fade-up fade-up-3">
+        <p class="fu fu2" style="color: var(--sub); line-height: 1.8; max-width: 38ch;">
           {{ description }}
         </p>
       </div>
 
-      <!-- Details column -->
-      <div class="fade-up fade-up-4">
-        <dl style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--rule);">
+      <!-- Meta table -->
+      <div class="fu fu3">
+        <table style="width: 100%; border-collapse: collapse;">
           {% if client %}
-          <dt style="padding: 1rem 0; border-bottom: 1px solid var(--rule); color: var(--mid);" class="section-label">Client</dt>
-          <dd style="padding: 1rem 0; border-bottom: 1px solid var(--rule);">{{ client }}</dd>
+          <tr style="border-top: 1px solid var(--border);">
+            <td class="label" style="padding: 1rem 0; width: 40%;">Client</td>
+            <td style="padding: 1rem 0; color: var(--bright); font-weight: 600;">{{ client }}</td>
+          </tr>
           {% endif %}
-
           {% if year %}
-          <dt style="padding: 1rem 0; border-bottom: 1px solid var(--rule); color: var(--mid);" class="section-label">Year</dt>
-          <dd style="padding: 1rem 0; border-bottom: 1px solid var(--rule);">{{ year }}</dd>
+          <tr style="border-top: 1px solid var(--border);">
+            <td class="label" style="padding: 1rem 0;">Year</td>
+            <td style="padding: 1rem 0; color: var(--bright); font-weight: 600;">{{ year }}</td>
+          </tr>
           {% endif %}
-
           {% if services and services.length %}
-          <dt style="padding: 1rem 0; border-bottom: 1px solid var(--rule); color: var(--mid);" class="section-label">Services</dt>
-          <dd style="padding: 1rem 0; border-bottom: 1px solid var(--rule);">{{ services | join(", ") }}</dd>
+          <tr style="border-top: 1px solid var(--border);">
+            <td class="label" style="padding: 1rem 0; vertical-align: top;">Services</td>
+            <td style="padding: 1rem 0; color: var(--bright); font-weight: 600; line-height: 1.8;">{{ services | join("<br/>") | safe }}</td>
+          </tr>
           {% endif %}
-
           {% if url %}
-          <dt style="padding: 1rem 0; color: var(--mid);" class="section-label">Live</dt>
-          <dd style="padding: 1rem 0;">
-            <a href="{{ url }}" target="_blank" rel="noopener" style="text-decoration: underline; text-underline-offset: 3px;">
-              Visit site →
-            </a>
-          </dd>
+          <tr style="border-top: 1px solid var(--border);">
+            <td class="label" style="padding: 1rem 0;">Live</td>
+            <td style="padding: 1rem 0;">
+              <a href="{{ url }}" target="_blank" rel="noopener" style="color: var(--fire); font-weight: 600; font-size: 0.8rem; letter-spacing: 0.05em;">
+                Visit site →
+              </a>
+            </td>
+          </tr>
           {% endif %}
-        </dl>
+          <tr style="border-top: 1px solid var(--border);"><td colspan="2" style="padding: 0;"></td></tr>
+        </table>
       </div>
     </div>
   </div>
 
-  <!-- Hero image -->
+  <!-- Hero visual -->
   {% if hero %}
-  <div class="max-w-6xl mx-auto px-6 pb-0">
-    <img
-      src="{{ hero }}"
-      alt="{{ title }}"
-      style="width:100%; max-height: 560px; object-fit: cover; display: block;"
-    />
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+    <img src="{{ hero }}" alt="{{ title }}" style="width: 100%; max-height: 580px; object-fit: cover; display: block; filter: brightness(0.9);" />
   </div>
   {% elif thumbnail %}
-  <div class="max-w-6xl mx-auto px-6 pb-0" style="background: #fff; display: flex; justify-content: center; padding-top: 3rem; padding-bottom: 3rem;">
-    <img
-      src="{{ thumbnail }}"
-      alt="{{ title }}"
-      style="max-height: 300px; max-width: 400px; object-fit: contain; display: block;"
-    />
+  <div style="max-width: 1200px; margin: 0 auto; padding: 3rem 2rem; background: var(--surface); display: flex; justify-content: center; margin-bottom: 0;">
+    <img src="{{ thumbnail }}" alt="{{ title }}" style="max-height: 280px; max-width: 380px; object-fit: contain; display: block;" />
   </div>
   {% endif %}
 </section>
 
-<!-- ── Case Study Body ────────────────────────────────────────────────────── -->
-<section class="max-w-3xl mx-auto px-6 py-20">
-  <div class="prose-custom">
+<!-- Case study body -->
+<section style="max-width: 760px; margin: 0 auto; padding: 5rem 2rem;">
+  <div class="prose-body">
     {{ content | safe }}
   </div>
 </section>
 
-<!-- ── Gallery ────────────────────────────────────────────────────────────── -->
+<!-- Gallery -->
 {% if gallery and gallery.length %}
-<section style="border-top: 1px solid var(--rule); padding: 4rem 0;">
-  <div class="max-w-6xl mx-auto px-6">
-    <p class="section-label mb-8">Project Gallery</p>
-    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: var(--rule);">
+<section style="border-top: 1px solid var(--border); padding: 4rem 0; background: var(--deep);">
+  <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+    <p class="label" style="margin-bottom: 2rem;">Project Gallery</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2px; background: var(--border);">
       {% for item in gallery %}
-      <figure style="margin:0; background: var(--paper);">
-        <img
-          src="{{ item.image }}"
-          alt="{{ item.caption or title }}"
-          style="width:100%; height: 280px; object-fit: cover; display: block;"
-        />
+      <figure style="margin:0; background: var(--deep); overflow: hidden;">
+        <img src="{{ item.image }}" alt="{{ item.caption or title }}" style="width:100%; height:280px; object-fit:cover; display:block; filter: brightness(0.85); transition: filter 0.3s;" onmouseover="this.style.filter='brightness(1)'" onmouseout="this.style.filter='brightness(0.85)'" />
         {% if item.caption %}
-        <figcaption style="padding: 0.75rem 1rem; font-size: 0.7rem; color: var(--mid); letter-spacing: 0.05em;">
-          {{ item.caption }}
-        </figcaption>
+        <figcaption class="label" style="padding: 0.75rem 1rem; color: var(--muted);">{{ item.caption }}</figcaption>
         {% endif %}
       </figure>
       {% endfor %}
@@ -112,65 +101,46 @@ layout: base.njk
 </section>
 {% endif %}
 
-<!-- ── Back link ─────────────────────────────────────────────────────────── -->
-<div class="max-w-6xl mx-auto px-6 py-16" style="border-top: 1px solid var(--rule);">
-  <a href="/work/" class="btn">← Back to Work</a>
+<!-- Back -->
+<div style="max-width: 1200px; margin: 0 auto; padding: 4rem 2rem; border-top: 1px solid var(--border);">
+  <a href="/work/" class="btn">← All Work</a>
 </div>
 
 <style>
-  /* ── Prose styles for markdown body ──────────────────────── */
-  .prose-custom h2 {
+  .prose-body h2 {
     font-family: var(--serif);
-    font-size: 1.9rem;
-    line-height: 1.15;
+    font-weight: 900;
+    font-size: 2.2rem;
+    line-height: 1.1;
     letter-spacing: -0.02em;
-    margin-top: 3rem;
-    margin-bottom: 1rem;
-    color: var(--ink);
+    color: var(--bright);
+    margin: 3.5rem 0 1rem;
   }
-  .prose-custom h3 {
-    font-family: var(--mono);
-    font-size: 0.75rem;
-    letter-spacing: 0.15em;
+  .prose-body h3 {
+    font-family: var(--sans);
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--mid);
-    margin-top: 2.5rem;
-    margin-bottom: 0.75rem;
+    color: var(--fire);
+    margin: 2.5rem 0 0.75rem;
   }
-  .prose-custom p {
-    margin-bottom: 1.5rem;
-    color: #2a2a2a;
-    line-height: 1.8;
-  }
-  .prose-custom ul, .prose-custom ol {
-    padding-left: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .prose-custom li { margin-bottom: 0.4rem; }
-  .prose-custom strong { color: var(--ink); font-weight: 500; }
-  .prose-custom blockquote {
-    border-left: 3px solid var(--accent);
+  .prose-body p { margin-bottom: 1.4rem; color: var(--sub); line-height: 1.85; font-size: 1rem; }
+  .prose-body ul, .prose-body ol { padding-left: 1.5rem; margin-bottom: 1.4rem; }
+  .prose-body li { margin-bottom: 0.4rem; color: var(--sub); }
+  .prose-body strong { color: var(--bright); font-weight: 600; }
+  .prose-body blockquote {
+    border-left: 3px solid var(--fire);
     padding: 1rem 1.5rem;
     margin: 2rem 0;
-    background: #fff;
+    background: var(--surface);
     font-family: var(--serif);
-    font-size: 1.3rem;
-    line-height: 1.4;
-    color: var(--ink);
+    font-style: italic;
+    font-size: 1.35rem;
+    line-height: 1.45;
+    color: var(--bright);
   }
-  .prose-custom img {
-    width: 100%;
-    height: auto;
-    margin: 2rem 0;
-  }
-  .prose-custom a {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-    color: var(--ink);
-  }
-  .prose-custom hr {
-    border: none;
-    border-top: 1px solid var(--rule);
-    margin: 3rem 0;
-  }
+  .prose-body hr { border: none; border-top: 1px solid var(--border); margin: 3rem 0; }
+  .prose-body a { color: var(--fire); text-decoration: underline; text-underline-offset: 3px; }
+  .prose-body img { width: 100%; height: auto; margin: 2rem 0; }
 </style>
