@@ -1,0 +1,82 @@
+---
+layout: base.njk
+title: "About"
+description: "About the designer and how to get in touch."
+---
+
+<section class="max-w-6xl mx-auto px-6 pt-20 pb-16" style="border-bottom: 1px solid var(--rule);">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: start;" class="fade-up">
+    <div>
+      <p class="section-label mb-6">About Me</p>
+      <h1 class="display" style="font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 2rem; line-height: 1.05;">
+        Designer.<br />Systems<br />thinker.
+      </h1>
+      <div style="color: #2a2a2a; line-height: 1.85; display: flex; flex-direction: column; gap: 1.2rem;">
+        <p>{{ site.bio }}</p>
+        <p>I believe design is most powerful when it's invisible — when a brand feels inevitable, when a product feels frictionless, when a system runs without a second thought.</p>
+        <p>With a background spanning visual identity, no-code platforms, and industrial process design, I bring a product mindset to every brief.</p>
+      </div>
+    </div>
+    <div>
+      <!-- Placeholder portrait area -->
+      <div style="background: #e8e4dc; aspect-ratio: 3/4; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+        <span class="section-label">Your photo here</span>
+      </div>
+      <dl style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--rule);">
+        <dt style="padding: 0.9rem 0; border-bottom: 1px solid var(--rule); color: var(--mid);" class="section-label">Based in</dt>
+        <dd style="padding: 0.9rem 0; border-bottom: 1px solid var(--rule);">Your City</dd>
+        <dt style="padding: 0.9rem 0; border-bottom: 1px solid var(--rule); color: var(--mid);" class="section-label">Focus</dt>
+        <dd style="padding: 0.9rem 0; border-bottom: 1px solid var(--rule);">Brand · Web · Systems</dd>
+        <dt style="padding: 0.9rem 0; color: var(--mid);" class="section-label">Open to</dt>
+        <dd style="padding: 0.9rem 0;">Freelance &amp; Full-time</dd>
+      </dl>
+    </div>
+  </div>
+</section>
+
+<!-- ── Contact ─────────────────────────────────────────────────────────────── -->
+<section id="contact" class="max-w-6xl mx-auto px-6 pt-16 pb-24">
+  <p class="section-label mb-4 fade-up">Contact</p>
+  <h2 class="display fade-up fade-up-1" style="font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 3rem;">
+    Let's make<br />something<br /><em>worth making.</em>
+  </h2>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;" class="fade-up fade-up-2">
+    <div>
+      <p style="color: var(--mid); line-height: 1.8; margin-bottom: 2rem;">
+        I'm open to brand identity projects, no-code web builds, and design consulting. Drop me a line — I reply within 24 hours.
+      </p>
+      <a href="mailto:{{ site.email }}" class="btn btn-accent" style="font-size: 0.8rem; padding: 12px 24px;">
+        {{ site.email }}
+      </a>
+
+      <div style="margin-top: 3rem; display: flex; gap: 1.5rem; flex-wrap: wrap;">
+        {% if site.social.dribbble %}
+        <a href="{{ site.social.dribbble }}" class="nav-link" target="_blank" rel="noopener">Dribbble</a>
+        {% endif %}
+        {% if site.social.linkedin %}
+        <a href="{{ site.social.linkedin }}" class="nav-link" target="_blank" rel="noopener">LinkedIn</a>
+        {% endif %}
+        {% if site.social.twitter %}
+        <a href="{{ site.social.twitter }}" class="nav-link" target="_blank" rel="noopener">Twitter / X</a>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Simple process callout -->
+    <div style="border: 1px solid var(--rule); padding: 2rem;">
+      <p class="section-label mb-4">How I work</p>
+      <ol style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0;">
+        {% set steps = ["Discovery & brief", "Research & strategy", "Concept & iteration", "Delivery & handoff"] %}
+        {% for step in steps %}
+        <li style="display: flex; align-items: center; gap: 1.5rem; padding: 1rem 0; border-bottom: 1px solid var(--rule);">
+          <span class="section-label" style="min-width: 1.5rem; color: var(--accent); background: var(--ink); padding: 1px 5px; font-size: 0.6rem;">
+            {{ "%02d" | format(loop.index) }}
+          </span>
+          <span>{{ step }}</span>
+        </li>
+        {% endfor %}
+      </ol>
+    </div>
+  </div>
+</section>

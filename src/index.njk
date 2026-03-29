@@ -1,0 +1,135 @@
+---
+layout: base.njk
+title: ""
+description: "Product-minded designer crafting brands, interfaces, and systems."
+---
+
+<!-- ── Hero ─────────────────────────────────────────────────────────────── -->
+<section class="max-w-6xl mx-auto px-6 pt-20 pb-24">
+  <div class="fade-up">
+    <p class="section-label mb-6">Available for work</p>
+  </div>
+
+  <h1 class="display fade-up fade-up-1" style="font-size: clamp(3.5rem, 9vw, 8rem); max-width: 14ch; margin-bottom: 0;">
+    Design that<br />
+    <em>thinks</em> before<br />
+    it speaks.
+  </h1>
+
+  <div class="fade-up fade-up-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; max-width: 700px;">
+    <p style="color: var(--mid); line-height: 1.8;">
+      {{ site.bio }}
+    </p>
+    <div style="display: flex; flex-direction: column; justify-content: flex-end; gap: 0.75rem; align-items: flex-start;">
+      <a href="/work/" class="btn btn-accent">View Work</a>
+      <a href="/about/" class="btn">About & Contact</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── Divider rule with label ────────────────────────────────────────────── -->
+<div class="max-w-6xl mx-auto px-6" style="border-top: 1px solid var(--rule); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
+  <span class="section-label">Featured Work</span>
+  <a href="/work/" class="nav-link" style="font-size: 0.7rem;">All projects →</a>
+</div>
+
+<!-- ── Featured: Logo Grid (first 6) ──────────────────────────────────────── -->
+<section class="max-w-6xl mx-auto px-6 mb-20">
+  <div class="fade-up fade-up-2" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1px; background: var(--rule);">
+    {% set logos = collections.logoProjects | first(6) %}
+    {% for project in logos %}
+    <a href="/work/logo-graphic-design/{{ project.data.slug }}/" class="logo-card" style="background: var(--paper);">
+      {% if project.data.thumbnail %}
+      <img src="{{ project.data.thumbnail }}" alt="{{ project.data.title }}" loading="lazy" />
+      {% else %}
+      <span class="section-label">{{ project.data.title }}</span>
+      {% endif %}
+    </a>
+    {% else %}
+    <!-- Placeholder cells while you add content -->
+    {% for i in range(0, 6) %}
+    <div class="logo-card" style="background:#fff;">
+      <span class="section-label" style="color:var(--rule);">Project {{ loop.index }}</span>
+    </div>
+    {% endfor %}
+    {% endfor %}
+  </div>
+  <div class="mt-6">
+    <a href="/work/#logo-graphic-design" class="btn" style="font-size:0.7rem;">Logo &amp; Graphic Design →</a>
+  </div>
+</section>
+
+<!-- ── Featured: No-Code + Factory (side by side cards) ───────────────────── -->
+<section class="max-w-6xl mx-auto px-6 mb-24">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule);">
+
+    <!-- No-Code Web card -->
+    {% set noCode = collections.noCodeProjects | first %}
+    {% if noCode %}
+    <a href="/work/no-code-web/{{ noCode.data.slug }}/" class="work-card" style="background: var(--paper);">
+      {% if noCode.data.thumbnail %}
+      <img src="{{ noCode.data.thumbnail }}" alt="{{ noCode.data.title }}" loading="lazy" />
+      {% else %}
+      <div style="height:240px; background: #eee; display: flex; align-items: center; justify-content: center;">
+        <span class="section-label">No-Code Web</span>
+      </div>
+      {% endif %}
+      <div style="padding: 1.25rem 1.5rem;">
+        <span class="badge" style="margin-bottom: 0.5rem;">No-Code Web</span>
+        <h3 class="display" style="font-size: 1.4rem; margin-top: 0.5rem;">{{ noCode.data.title }}</h3>
+      </div>
+    </a>
+    {% else %}
+    <div class="work-card" style="background: #fff;">
+      <div style="height:240px; background: #f0ede6; display: flex; align-items: center; justify-content: center;">
+        <span class="section-label">No-Code Web</span>
+      </div>
+      <div style="padding: 1.25rem 1.5rem;">
+        <span class="badge">No-Code Web</span>
+        <h3 class="display" style="font-size: 1.4rem; margin-top: 0.5rem;">Your project here</h3>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Factory Project card -->
+    {% set factory = collections.factoryProjects | first %}
+    {% if factory %}
+    <a href="/work/factory-project/{{ factory.data.slug }}/" class="work-card" style="background: var(--paper);">
+      {% if factory.data.thumbnail %}
+      <img src="{{ factory.data.thumbnail }}" alt="{{ factory.data.title }}" loading="lazy" />
+      {% else %}
+      <div style="height:240px; background: #eee; display: flex; align-items: center; justify-content: center;">
+        <span class="section-label">Factory Project</span>
+      </div>
+      {% endif %}
+      <div style="padding: 1.25rem 1.5rem;">
+        <span class="badge" style="margin-bottom: 0.5rem;">Factory Project</span>
+        <h3 class="display" style="font-size: 1.4rem; margin-top: 0.5rem;">{{ factory.data.title }}</h3>
+      </div>
+    </a>
+    {% else %}
+    <div class="work-card" style="background: #fff;">
+      <div style="height:240px; background: #f0ede6; display: flex; align-items: center; justify-content: center;">
+        <span class="section-label">Factory Project</span>
+      </div>
+      <div style="padding: 1.25rem 1.5rem;">
+        <span class="badge">Factory Project</span>
+        <h3 class="display" style="font-size: 1.4rem; margin-top: 0.5rem;">Your project here</h3>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+
+<!-- ── Manifesto strip ─────────────────────────────────────────────────────── -->
+<div style="background: var(--ink); color: var(--paper); padding: 4rem 0; overflow: hidden; margin-bottom: 0;">
+  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between gap-8 flex-wrap">
+    <p class="display" style="font-size: clamp(1.8rem, 4vw, 3rem); max-width: 18ch; color: var(--paper); line-height: 1.1;">
+      Good design is a product decision, not a decoration.
+    </p>
+    <a href="/about/#contact" class="btn" style="border-color: var(--accent); color: var(--accent);">
+      Start a project →
+    </a>
+  </div>
+</div>

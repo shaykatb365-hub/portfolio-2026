@@ -1,0 +1,20 @@
+---
+layout: project.njk
+tags:
+  - logo-graphic-design
+pagination:
+  data: collections.logoProjects
+  size: 1
+  alias: project
+permalink: "/work/logo-graphic-design/{{ project.data.slug }}/"
+eleventyComputed:
+  title: "{{ project.data.title }}"
+  description: "{{ project.data.description }}"
+  thumbnail: "{{ project.data.thumbnail }}"
+  hero: "{{ project.data.hero }}"
+  client: "{{ project.data.client }}"
+  year: "{{ project.data.year }}"
+  services: "{{ project.data.services }}"
+---
+
+{{ project.templateContent | safe }}
