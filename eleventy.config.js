@@ -7,26 +7,23 @@ module.exports = function (eleventyConfig) {
   // ── Pass-through copies ────────────────────────────────────────────────────
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
-  // Netlify / Decap CMS uploads land here
   eleventyConfig.addPassthroughCopy("src/uploads");
+  // Added this to make sure your CSS carries over!
+  eleventyConfig.addPassthroughCopy("src/main.css");
 
   // ── Collections ────────────────────────────────────────────────────────────
-
-  // Logo / Graphic Design projects
   eleventyConfig.addCollection("logoProjects", (collectionApi) =>
     collectionApi
       .getFilteredByGlob("src/work/logo-graphic-design/*.md")
       .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
   );
 
-  // No-Code Web projects
   eleventyConfig.addCollection("noCodeProjects", (collectionApi) =>
     collectionApi
       .getFilteredByGlob("src/work/no-code-web/*.md")
       .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
   );
 
-  // Factory projects
   eleventyConfig.addCollection("factoryProjects", (collectionApi) =>
     collectionApi
       .getFilteredByGlob("src/work/factory-project/*.md")
@@ -42,6 +39,12 @@ module.exports = function (eleventyConfig) {
       .replace(/[\s_-]+/g, "-")
       .replace(/^-+|-+$/g, "")
   );
+
+  // THIS IS THE FIX: Added the missing format filter
+  eleventyConfig.addFilter("format", (value) => {
+    // This just returns the number as is, preventing the crash
+    return value;
+  });
 
   // ── Markdown options ───────────────────────────────────────────────────────
   const markdownIt = require("markdown-it");
