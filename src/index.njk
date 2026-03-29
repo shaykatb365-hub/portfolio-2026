@@ -4,117 +4,156 @@ title: ""
 description: "Product-minded designer crafting brands, interfaces, and systems."
 ---
 
-<!-- ── Hero ─────────────────────────────────────────────────────────────── -->
-<section class="max-w-6xl mx-auto px-6 pt-20 pb-24">
-  <div class="fade-up">
-    <p class="section-label mb-6">Available for work</p>
+<!-- ── Hero ──────────────────────────────────────────────────────────────── -->
+<section style="
+  min-height: 92vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 2rem 5rem;
+  max-width: 1200px; margin: 0 auto;
+  position: relative;
+">
+  <!-- Ambient glow behind headline -->
+  <div aria-hidden="true" style="
+    position: absolute; top: 15%; left: -5%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(255,77,28,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  "></div>
+
+  <div class="label fu" style="margin-bottom: 2rem; display: flex; align-items: center; gap: 1rem;">
+    <span style="display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--fire);"></span>
+    Available for projects
   </div>
 
-  <h1 class="display fade-up fade-up-1" style="font-size: clamp(3.5rem, 9vw, 8rem); max-width: 14ch; margin-bottom: 0;">
-    Design that<br />
-    <em>thinks</em> before<br />
-    it speaks.
+  <h1 class="display fu fu1" style="font-size: clamp(4rem, 10vw, 9.5rem); max-width: 14ch; margin-bottom: 3rem;">
+    Design that<br /><em>thinks</em> before<br />it speaks.
   </h1>
 
-  <div class="fade-up fade-up-2" style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 3rem; max-width: 700px;">
-    <p style="color: var(--mid); line-height: 1.8;">
+  <div class="fu fu2" style="display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 2rem; border-top: 1px solid var(--border); padding-top: 2rem;">
+    <p style="color: var(--sub); max-width: 38ch; line-height: 1.8; font-size: 0.95rem;">
       {{ site.bio }}
     </p>
-    <div style="display: flex; flex-direction: column; justify-content: flex-end; gap: 0.75rem; align-items: flex-start;">
-      <a href="/work/" class="btn btn-accent">View Work</a>
-      <a href="/about/" class="btn">About & Contact</a>
+    <div style="display: flex; gap: 1rem;">
+      <a href="/work/" class="btn btn-fire">View Work</a>
+      <a href="/about/#contact" class="btn">Get in touch</a>
     </div>
   </div>
 </section>
 
-<!-- ── Divider rule with label ────────────────────────────────────────────── -->
-<div class="max-w-6xl mx-auto px-6" style="border-top: 1px solid var(--rule); padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center; margin-bottom: 3rem;">
-  <span class="section-label">Featured Work</span>
-  <a href="/work/" class="nav-link" style="font-size: 0.7rem;">All projects →</a>
+<!-- ── Marquee strip ──────────────────────────────────────────────────────── -->
+<div style="border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 1rem 0; overflow: hidden; background: var(--deep);">
+  <div style="display: flex; width: max-content; animation: marquee 24s linear infinite;">
+    {% set tags = ["Brand Identity", "Logo Design", "No-Code Web", "Webflow", "Framer", "Visual Systems", "Factory Design", "Art Direction", "Brand Identity", "Logo Design", "No-Code Web", "Webflow", "Framer", "Visual Systems", "Factory Design", "Art Direction"] %}
+    {% for tag in tags %}
+    <span style="
+      white-space: nowrap;
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.04em;
+      padding: 0 2rem;
+      border-right: 1px solid var(--border2);
+      color: {% if loop.index % 4 == 0 %}var(--fire){% else %}var(--muted){% endif %};
+    ">{{ tag }}</span>
+    {% endfor %}
+  </div>
 </div>
 
-<!-- ── Featured: Logo Grid (first 6) ──────────────────────────────────────── -->
-<section class="max-w-6xl mx-auto px-6 mb-20">
-  <div class="fade-up fade-up-2" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 1px; background: var(--rule);">
+<!-- ── Featured: Logo Grid ───────────────────────────────────────────────── -->
+<section style="max-width: 1200px; margin: 0 auto; padding: 5rem 2rem 4rem;">
+  <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2.5rem;">
+    <div style="display: flex; align-items: center; gap: 1.5rem;">
+      <span style="font-family: var(--serif); font-style: italic; font-size: 3.5rem; font-weight: 900; color: var(--border2); line-height: 1;">01</span>
+      <div>
+        <p class="label" style="margin-bottom: 0.3rem;">Category</p>
+        <h2 class="display" style="font-size: 2rem;">Logo &amp; Graphic Design</h2>
+      </div>
+    </div>
+    <a href="/work/#logo-graphic-design" class="nav-link">All logos →</a>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 2px; background: var(--border);">
     {% set logos = collections.logoProjects | first(6) %}
     {% for project in logos %}
-    <a href="/work/logo-graphic-design/{{ project.data.slug }}/" class="logo-card" style="background: var(--paper);">
+    <a href="/work/logo-graphic-design/{{ project.data.slug }}/" class="logo-card" title="{{ project.data.title }}">
       {% if project.data.thumbnail %}
       <img src="{{ project.data.thumbnail }}" alt="{{ project.data.title }}" loading="lazy" />
       {% else %}
-      <span class="section-label">{{ project.data.title }}</span>
+      <span class="label" style="text-align: center; line-height: 1.5;">{{ project.data.title }}</span>
       {% endif %}
+      <span class="logo-card-arrow">View →</span>
     </a>
     {% else %}
-    <!-- Placeholder cells while you add content -->
-    {% for i in range(0, 6) %}
-    <div class="logo-card" style="background:#fff;">
-      <span class="section-label" style="color:var(--rule);">Project {{ loop.index }}</span>
+    {% for i in range(0,6) %}
+    <div class="logo-card">
+      <span class="label" style="color: var(--border2);">Add via CMS</span>
     </div>
     {% endfor %}
     {% endfor %}
   </div>
-  <div class="mt-6">
-    <a href="/work/#logo-graphic-design" class="btn" style="font-size:0.7rem;">Logo &amp; Graphic Design →</a>
-  </div>
 </section>
 
-<!-- ── Featured: No-Code + Factory (side by side cards) ───────────────────── -->
-<section class="max-w-6xl mx-auto px-6 mb-24">
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--rule);">
+<!-- ── Featured: No-Code + Factory ──────────────────────────────────────── -->
+<section style="max-width: 1200px; margin: 0 auto; padding: 0 2rem 5rem;">
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--border);">
 
-    <!-- No-Code Web card -->
+    <!-- No-Code Web -->
     {% set noCode = collections.noCodeProjects | first %}
     {% if noCode %}
-    <a href="/work/no-code-web/{{ noCode.data.slug }}/" class="work-card" style="background: var(--paper);">
-      {% if noCode.data.thumbnail %}
-      <img src="{{ noCode.data.thumbnail }}" alt="{{ noCode.data.title }}" loading="lazy" />
-      {% else %}
-      <div style="height:240px; background: #eee; display: flex; align-items: center; justify-content: center;">
-        <span class="section-label">No-Code Web</span>
+    <a href="/work/no-code-web/{{ noCode.data.slug }}/" class="work-card">
+      <div class="work-card-thumb-wrap">
+        {% if noCode.data.thumbnail %}
+        <img src="{{ noCode.data.thumbnail }}" alt="{{ noCode.data.title }}" class="thumb" loading="lazy" />
+        {% else %}
+        <div style="height:260px; background: var(--lifted); display:flex; align-items:center; justify-content:center;">
+          <span class="label">No-Code Web</span>
+        </div>
+        {% endif %}
       </div>
-      {% endif %}
-      <div style="padding: 1.25rem 1.5rem;">
-        <span class="badge" style="margin-bottom: 0.5rem;">No-Code Web</span>
-        <h3 class="display" style="font-size: 1.4rem; margin-top: 0.5rem;">{{ noCode.data.title }}</h3>
+      <div style="padding: 1.5rem;">
+        <span class="badge" style="margin-bottom: 0.75rem; display: inline-block;">No-Code Web</span>
+        <h3 class="display" style="font-size: 1.6rem; margin-top: 0.5rem;">{{ noCode.data.title }}</h3>
       </div>
     </a>
     {% else %}
-    <div class="work-card" style="background: #fff;">
-      <div style="height:240px; background: #f0ede6; display: flex; align-items: center; justify-content: center;">
-        <span class="section-label">No-Code Web</span>
+    <div class="work-card">
+      <div style="height:260px; background: var(--surface); display:flex; align-items:center; justify-content:center;">
+        <span class="label">No-Code Web</span>
       </div>
-      <div style="padding: 1.25rem 1.5rem;">
-        <span class="badge">No-Code Web</span>
-        <h3 class="display" style="font-size: 1.4rem; margin-top: 0.5rem;">Your project here</h3>
+      <div style="padding: 1.5rem;">
+        <span class="badge" style="display: inline-block; margin-bottom: 0.75rem;">No-Code Web</span>
+        <h3 class="display" style="font-size: 1.6rem;">Add via CMS</h3>
       </div>
     </div>
     {% endif %}
 
-    <!-- Factory Project card -->
+    <!-- Factory -->
     {% set factory = collections.factoryProjects | first %}
     {% if factory %}
-    <a href="/work/factory-project/{{ factory.data.slug }}/" class="work-card" style="background: var(--paper);">
-      {% if factory.data.thumbnail %}
-      <img src="{{ factory.data.thumbnail }}" alt="{{ factory.data.title }}" loading="lazy" />
-      {% else %}
-      <div style="height:240px; background: #eee; display: flex; align-items: center; justify-content: center;">
-        <span class="section-label">Factory Project</span>
+    <a href="/work/factory-project/{{ factory.data.slug }}/" class="work-card">
+      <div class="work-card-thumb-wrap">
+        {% if factory.data.thumbnail %}
+        <img src="{{ factory.data.thumbnail }}" alt="{{ factory.data.title }}" class="thumb" loading="lazy" />
+        {% else %}
+        <div style="height:260px; background: var(--lifted); display:flex; align-items:center; justify-content:center;">
+          <span class="label">Factory Project</span>
+        </div>
+        {% endif %}
       </div>
-      {% endif %}
-      <div style="padding: 1.25rem 1.5rem;">
-        <span class="badge" style="margin-bottom: 0.5rem;">Factory Project</span>
-        <h3 class="display" style="font-size: 1.4rem; margin-top: 0.5rem;">{{ factory.data.title }}</h3>
+      <div style="padding: 1.5rem;">
+        <span class="badge" style="margin-bottom: 0.75rem; display: inline-block;">Factory Project</span>
+        <h3 class="display" style="font-size: 1.6rem; margin-top: 0.5rem;">{{ factory.data.title }}</h3>
       </div>
     </a>
     {% else %}
-    <div class="work-card" style="background: #fff;">
-      <div style="height:240px; background: #f0ede6; display: flex; align-items: center; justify-content: center;">
-        <span class="section-label">Factory Project</span>
+    <div class="work-card">
+      <div style="height:260px; background: var(--surface); display:flex; align-items:center; justify-content:center;">
+        <span class="label">Factory Project</span>
       </div>
-      <div style="padding: 1.25rem 1.5rem;">
-        <span class="badge">Factory Project</span>
-        <h3 class="display" style="font-size: 1.4rem; margin-top: 0.5rem;">Your project here</h3>
+      <div style="padding: 1.5rem;">
+        <span class="badge" style="display: inline-block; margin-bottom: 0.75rem;">Factory Project</span>
+        <h3 class="display" style="font-size: 1.6rem;">Add via CMS</h3>
       </div>
     </div>
     {% endif %}
@@ -122,13 +161,25 @@ description: "Product-minded designer crafting brands, interfaces, and systems."
   </div>
 </section>
 
-<!-- ── Manifesto strip ─────────────────────────────────────────────────────── -->
-<div style="background: var(--ink); color: var(--paper); padding: 4rem 0; overflow: hidden; margin-bottom: 0;">
-  <div class="max-w-6xl mx-auto px-6 flex items-center justify-between gap-8 flex-wrap">
-    <p class="display" style="font-size: clamp(1.8rem, 4vw, 3rem); max-width: 18ch; color: var(--paper); line-height: 1.1;">
+<!-- ── Manifesto banner ──────────────────────────────────────────────────── -->
+<div style="
+  background: var(--fire);
+  padding: 5rem 2rem;
+  overflow: hidden;
+  position: relative;
+">
+  <div aria-hidden="true" style="
+    position: absolute; top: -50%; right: -10%;
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.1);
+    pointer-events: none;
+  "></div>
+  <div style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 3rem; flex-wrap: wrap;">
+    <p class="display" style="font-size: clamp(2rem, 4.5vw, 3.5rem); color: #fff; max-width: 16ch; line-height: 1.05;">
       Good design is a product decision, not a decoration.
     </p>
-    <a href="/about/#contact" class="btn" style="border-color: var(--accent); color: var(--accent);">
+    <a href="/about/#contact" class="btn" style="border-color: rgba(255,255,255,0.4); color: #fff; background: rgba(255,255,255,0.1);">
       Start a project →
     </a>
   </div>
