@@ -8,7 +8,6 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
   eleventyConfig.addPassthroughCopy("src/uploads");
-  // Added this to make sure your CSS carries over!
   eleventyConfig.addPassthroughCopy("src/main.css");
 
   // ── Collections ────────────────────────────────────────────────────────────
@@ -40,10 +39,12 @@ module.exports = function (eleventyConfig) {
       .replace(/^-+|-+$/g, "")
   );
 
-  // THIS IS THE FIX: Added the missing format filter
-  eleventyConfig.addFilter("format", (value) => {
-    // This just returns the number as is, preventing the crash
-    return value;
+  // Prevents crash on About page
+  eleventyConfig.addFilter("format", (value) => value);
+
+  // THIS IS THE NEW FIX: Prevents crash on Base layout
+  eleventyConfig.addFilter("date", (value) => {
+    return new Date().getFullYear(); 
   });
 
   // ── Markdown options ───────────────────────────────────────────────────────
