@@ -1,0 +1,176 @@
+---
+layout: base.njk
+---
+
+<!-- ── Project Hero ──────────────────────────────────────────────────────── -->
+<section style="border-bottom: 1px solid var(--rule);">
+  <div class="max-w-6xl mx-auto px-6 pt-16 pb-12">
+
+    <!-- Breadcrumb -->
+    <div class="flex items-center gap-2 mb-10 section-label fade-up">
+      <a href="/work/" style="color: var(--mid);">Work</a>
+      <span style="color: var(--rule);">/</span>
+      <span>{{ title }}</span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-end fade-up fade-up-1">
+      <!-- Meta column -->
+      <div>
+        {% if client %}
+        <div class="badge mb-4">{{ client }}</div>
+        {% endif %}
+
+        <h1 class="display fade-up fade-up-2" style="font-size: clamp(2.8rem, 6vw, 5rem); margin-bottom: 1.5rem;">
+          {{ title }}
+        </h1>
+
+        <p style="color: var(--mid); max-width: 38ch; line-height: 1.8;" class="fade-up fade-up-3">
+          {{ description }}
+        </p>
+      </div>
+
+      <!-- Details column -->
+      <div class="fade-up fade-up-4">
+        <dl style="display: grid; grid-template-columns: 1fr 1fr; gap: 0; border-top: 1px solid var(--rule);">
+          {% if client %}
+          <dt style="padding: 1rem 0; border-bottom: 1px solid var(--rule); color: var(--mid);" class="section-label">Client</dt>
+          <dd style="padding: 1rem 0; border-bottom: 1px solid var(--rule);">{{ client }}</dd>
+          {% endif %}
+
+          {% if year %}
+          <dt style="padding: 1rem 0; border-bottom: 1px solid var(--rule); color: var(--mid);" class="section-label">Year</dt>
+          <dd style="padding: 1rem 0; border-bottom: 1px solid var(--rule);">{{ year }}</dd>
+          {% endif %}
+
+          {% if services and services.length %}
+          <dt style="padding: 1rem 0; border-bottom: 1px solid var(--rule); color: var(--mid);" class="section-label">Services</dt>
+          <dd style="padding: 1rem 0; border-bottom: 1px solid var(--rule);">{{ services | join(", ") }}</dd>
+          {% endif %}
+
+          {% if url %}
+          <dt style="padding: 1rem 0; color: var(--mid);" class="section-label">Live</dt>
+          <dd style="padding: 1rem 0;">
+            <a href="{{ url }}" target="_blank" rel="noopener" style="text-decoration: underline; text-underline-offset: 3px;">
+              Visit site →
+            </a>
+          </dd>
+          {% endif %}
+        </dl>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero image -->
+  {% if hero %}
+  <div class="max-w-6xl mx-auto px-6 pb-0">
+    <img
+      src="{{ hero }}"
+      alt="{{ title }}"
+      style="width:100%; max-height: 560px; object-fit: cover; display: block;"
+    />
+  </div>
+  {% elif thumbnail %}
+  <div class="max-w-6xl mx-auto px-6 pb-0" style="background: #fff; display: flex; justify-content: center; padding-top: 3rem; padding-bottom: 3rem;">
+    <img
+      src="{{ thumbnail }}"
+      alt="{{ title }}"
+      style="max-height: 300px; max-width: 400px; object-fit: contain; display: block;"
+    />
+  </div>
+  {% endif %}
+</section>
+
+<!-- ── Case Study Body ────────────────────────────────────────────────────── -->
+<section class="max-w-3xl mx-auto px-6 py-20">
+  <div class="prose-custom">
+    {{ content | safe }}
+  </div>
+</section>
+
+<!-- ── Gallery ────────────────────────────────────────────────────────────── -->
+{% if gallery and gallery.length %}
+<section style="border-top: 1px solid var(--rule); padding: 4rem 0;">
+  <div class="max-w-6xl mx-auto px-6">
+    <p class="section-label mb-8">Project Gallery</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1px; background: var(--rule);">
+      {% for item in gallery %}
+      <figure style="margin:0; background: var(--paper);">
+        <img
+          src="{{ item.image }}"
+          alt="{{ item.caption or title }}"
+          style="width:100%; height: 280px; object-fit: cover; display: block;"
+        />
+        {% if item.caption %}
+        <figcaption style="padding: 0.75rem 1rem; font-size: 0.7rem; color: var(--mid); letter-spacing: 0.05em;">
+          {{ item.caption }}
+        </figcaption>
+        {% endif %}
+      </figure>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+
+<!-- ── Back link ─────────────────────────────────────────────────────────── -->
+<div class="max-w-6xl mx-auto px-6 py-16" style="border-top: 1px solid var(--rule);">
+  <a href="/work/" class="btn">← Back to Work</a>
+</div>
+
+<style>
+  /* ── Prose styles for markdown body ──────────────────────── */
+  .prose-custom h2 {
+    font-family: var(--serif);
+    font-size: 1.9rem;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    color: var(--ink);
+  }
+  .prose-custom h3 {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+  }
+  .prose-custom p {
+    margin-bottom: 1.5rem;
+    color: #2a2a2a;
+    line-height: 1.8;
+  }
+  .prose-custom ul, .prose-custom ol {
+    padding-left: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  .prose-custom li { margin-bottom: 0.4rem; }
+  .prose-custom strong { color: var(--ink); font-weight: 500; }
+  .prose-custom blockquote {
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.5rem;
+    margin: 2rem 0;
+    background: #fff;
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    line-height: 1.4;
+    color: var(--ink);
+  }
+  .prose-custom img {
+    width: 100%;
+    height: auto;
+    margin: 2rem 0;
+  }
+  .prose-custom a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    color: var(--ink);
+  }
+  .prose-custom hr {
+    border: none;
+    border-top: 1px solid var(--rule);
+    margin: 3rem 0;
+  }
+</style>
