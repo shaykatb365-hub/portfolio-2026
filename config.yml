@@ -1,0 +1,83 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Enables Cloudflare Pages / Netlify Identity
+publish_mode: editorial_workflow
+
+media_folder: "src/uploads"
+public_folder: "/uploads"
+
+collections:
+  # ── 1. Logo / Graphic Design ─────────────────────────────────────────────
+  - name: "logo_graphic_design"
+    label: "Logo / Graphic Design"
+    folder: "src/work/logo-graphic-design"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Project Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string", hint: "URL-safe identifier, e.g. acme-rebrand" }
+      - { label: "Order", name: "order", widget: "number", default: 99, hint: "Lower = appears first in grid" }
+      - { label: "Thumbnail (logo image)", name: "thumbnail", widget: "image" }
+      - { label: "Hero Image", name: "hero", widget: "image", required: false }
+      - { label: "Client", name: "client", widget: "string", required: false }
+      - { label: "Year", name: "year", widget: "string", required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["logo-graphic-design"] }
+      - label: "Services"
+        name: "services"
+        widget: "list"
+        field: { label: "Service", name: "service", widget: "string" }
+      - { label: "Short Description", name: "description", widget: "text" }
+      - { label: "Case Study Body", name: "body", widget: "markdown" }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Caption", name: "caption", widget: "string", required: false }
+
+  # ── 2. No-Code Web ────────────────────────────────────────────────────────
+  - name: "no_code_web"
+    label: "No-Code Web"
+    folder: "src/work/no-code-web"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Project Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", default: 99 }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { label: "Hero Image", name: "hero", widget: "image", required: false }
+      - { label: "Live URL", name: "url", widget: "string", required: false }
+      - { label: "Client", name: "client", widget: "string", required: false }
+      - { label: "Year", name: "year", widget: "string", required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["no-code-web"] }
+      - { label: "Short Description", name: "description", widget: "text" }
+      - { label: "Case Study Body", name: "body", widget: "markdown" }
+
+  # ── 3. Factory Project ────────────────────────────────────────────────────
+  - name: "factory_project"
+    label: "Factory Project"
+    folder: "src/work/factory-project"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Project Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", default: 99 }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { label: "Hero Image", name: "hero", widget: "image", required: false }
+      - { label: "Client", name: "client", widget: "string", required: false }
+      - { label: "Year", name: "year", widget: "string", required: false }
+      - { label: "Tags", name: "tags", widget: "list", default: ["factory-project"] }
+      - { label: "Short Description", name: "description", widget: "text" }
+      - { label: "Case Study Body", name: "body", widget: "markdown" }
+      - label: "Gallery"
+        name: "gallery"
+        widget: "list"
+        required: false
+        fields:
+          - { label: "Image", name: "image", widget: "image" }
+          - { label: "Caption", name: "caption", widget: "string", required: false }

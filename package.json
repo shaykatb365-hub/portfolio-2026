@@ -1,0 +1,19 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Minimalist designer portfolio — Eleventy + Tailwind + Decap CMS",
+  "scripts": {
+    "dev": "concurrently \"npx @11ty/eleventy --serve\" \"npx tailwindcss -i ./src/assets/css/main.css -o ./src/assets/css/output.css --watch\"",
+    "build": "npx tailwindcss -i ./src/assets/css/main.css -o ./src/assets/css/output.css && npx @11ty/eleventy",
+    "build:css": "npx tailwindcss -i ./src/assets/css/main.css -o ./src/assets/css/output.css",
+    "build:11ty": "npx @11ty/eleventy"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^2.0.1",
+    "@11ty/eleventy-plugin-rss": "^1.2.0"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "tailwindcss": "^3.4.1"
+  }
+}
