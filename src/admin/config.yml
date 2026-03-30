@@ -1,0 +1,53 @@
+backend:
+  name: github
+  repo: shaykatb365-hub/portfolio-2026
+  branch: main
+
+media_folder: "src/uploads"
+public_folder: "/uploads"
+
+collections:
+  - name: "logo_graphic_design"
+    label: "Logo / Graphic Design"
+    folder: "src/work/logo-graphic-design"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", default: 99 }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { label: "Client", name: "client", widget: "string", required: false }
+      - { label: "Year", name: "year", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Case Study Body", name: "body", widget: "markdown" }
+
+  - name: "no_code_web"
+    label: "No-Code Web"
+    folder: "src/work/no-code-web"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", default: 99 }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { label: "Client", name: "client", widget: "string", required: false }
+      - { label: "Year", name: "year", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Case Study Body", name: "body", widget: "markdown" }
+
+  - name: "factory_project"
+    label: "Factory Project"
+    folder: "src/work/factory-project"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Order", name: "order", widget: "number", default: 99 }
+      - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { label: "Client", name: "client", widget: "string", required: false }
+      - { label: "Year", name: "year", widget: "string", required: false }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Case Study Body", name: "body", widget: "markdown" }
