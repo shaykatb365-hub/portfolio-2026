@@ -49,6 +49,7 @@ collections:
       - { label: "Slug", name: "slug", widget: "string" }
       - { label: "Order", name: "order", widget: "number", default: 99 }
       - { label: "Thumbnail", name: "thumbnail", widget: "image" }
+      - { label: "Screen Recording (video)", name: "videoUrl", widget: "file", required: false, hint: "Upload MP4 screen recording — shown in homepage scrollable row" }
       - { label: "Hero Image", name: "hero", widget: "image", required: false }
       - { label: "Live URL", name: "url", widget: "string", required: false }
       - { label: "Client", name: "client", widget: "string", required: false }
