@@ -45,6 +45,9 @@ module.exports = function (eleventyConfig) {
       .replace(/^-+|-+$/g, "")
   );
 
+  // Zero-pad a number to 2 digits — replaces the Jinja2-only | format filter
+  eleventyConfig.addFilter("pad2", (n) => String(n).padStart(2, "0"));
+
   // ── Markdown options ───────────────────────────────────────────────────────
   const markdownIt = require("markdown-it");
   const md = markdownIt({ html: true, linkify: true, typographer: true });
