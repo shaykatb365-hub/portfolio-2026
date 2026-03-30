@@ -7,22 +7,28 @@ module.exports = function (eleventyConfig) {
   // ── Pass-through copies ────────────────────────────────────────────────────
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
+  // Netlify / Decap CMS uploads land here
   eleventyConfig.addPassthroughCopy("src/uploads");
-  eleventyConfig.addPassthroughCopy("src/main.css");
+  // Video files for no-code web scrollable row
+  eleventyConfig.addPassthroughCopy("src/videos");
 
   // ── Collections ────────────────────────────────────────────────────────────
+
+  // Logo / Graphic Design projects
   eleventyConfig.addCollection("logoProjects", (collectionApi) =>
     collectionApi
       .getFilteredByGlob("src/work/logo-graphic-design/*.md")
       .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
   );
 
+  // No-Code Web projects
   eleventyConfig.addCollection("noCodeProjects", (collectionApi) =>
     collectionApi
       .getFilteredByGlob("src/work/no-code-web/*.md")
       .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99))
   );
 
+  // Factory projects
   eleventyConfig.addCollection("factoryProjects", (collectionApi) =>
     collectionApi
       .getFilteredByGlob("src/work/factory-project/*.md")
@@ -38,14 +44,6 @@ module.exports = function (eleventyConfig) {
       .replace(/[\s_-]+/g, "-")
       .replace(/^-+|-+$/g, "")
   );
-
-  // Prevents crash on About page
-  eleventyConfig.addFilter("format", (value) => value);
-
-  // THIS IS THE NEW FIX: Prevents crash on Base layout
-  eleventyConfig.addFilter("date", (value) => {
-    return new Date().getFullYear(); 
-  });
 
   // ── Markdown options ───────────────────────────────────────────────────────
   const markdownIt = require("markdown-it");
