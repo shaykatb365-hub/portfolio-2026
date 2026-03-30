@@ -195,7 +195,7 @@ description: "Selected projects across brand identity, no-code web, and factory 
     {% for project in collections.factoryProjects %}
     <a href="/work/factory-project/{{ project.data.slug }}/" class="list-row">
       <span style="font-family: var(--serif); font-style: italic; font-size: 1.5rem; font-weight: 900; color: var(--fire); line-height: 1;">
-        {{ "%02d" | format(loop.index) }}
+        {{ loop.index | pad2 }}
       </span>
       <div>
         <h3 class="display" style="font-size: 1.6rem; margin-bottom: 0.35rem;">{{ project.data.title }}</h3>
