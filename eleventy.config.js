@@ -11,6 +11,8 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/uploads");
   // Video files for no-code web scrollable row
   eleventyConfig.addPassthroughCopy("src/videos");
+  // Public folder (Cloudflare _redirects etc.)
+  eleventyConfig.addPassthroughCopy("public");
 
   // ── Collections ────────────────────────────────────────────────────────────
 
